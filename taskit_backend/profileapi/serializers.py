@@ -9,8 +9,11 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ('username', 'contacts', 'history', 'curr_groups','points', 'active', 'role', 'password')
+        extra_kwargs = {"username": {"error_messages": {"required": "Give yourself a username"}},
+                        'password': {"error_messages": {"required": "Password is required."}}}
 
 class ProfileSimpleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ('username', 'history')
+
