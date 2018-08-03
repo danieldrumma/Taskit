@@ -23,7 +23,7 @@ body {
 	 margin: 150px 0px 100px 10px;
      text-align: center;
 
-	 
+
     }
  p{
 	 text-align:center;
@@ -34,7 +34,7 @@ body {
 	 padding-right: 12px;
 	 color: #f2f2f2;
  }
-	 
+
 .button1{
 		background-color: red;
 		border: 1.5px #000;
@@ -42,12 +42,12 @@ body {
 		color: white;
 		padding: 15px 15px;
 		text-align: right;
-		
+
 		font-size: 15px;
-		
-		cursor: pointer;	
+
+		cursor: pointer;
 	}
-	
+
 button1:hover{
 		background-color: green;
 	}
@@ -58,12 +58,12 @@ button1:hover{
 		color: white;
 		padding: 15px 15px;
 		text-align: right;
-		
+
 		font-size: 15px;
-		
+
 		cursor: pointer;
 	}
-	
+
 button2:hover{
 		background-color:green;
 	}
@@ -72,4 +72,3 @@ button2:hover{
 	padding-top: 2000px;
 	color: #bfbfbf;
 }
-
