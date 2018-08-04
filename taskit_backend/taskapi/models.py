@@ -2,8 +2,8 @@ from django.db import models
 
 # Create your models here.
 class Task(models.Model):
-    text = models.CharField(max_length=200)
-    state = models.CharField(max_length=20)
-    creator = models.OneToOneField('profileapi.profile')
-    value = models.IngegerField
+    text = models.CharField(max_length=200, default='')
+    state = models.CharField(max_length=20, default='')
+    creator = models.OneToOneField('profileapi.profile', on_delete=models.CASCADE, null=True)
+    value = models.IntegerField
     time = models.DateTimeField

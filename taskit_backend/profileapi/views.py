@@ -3,7 +3,7 @@ from profileapi.serializers import ProfileSerializer
 from rest_framework import generics, status
 from rest_framework.response import Response
 from django.core.exceptions import ObjectDoesNotExist
-
+from django.views.decorators.csrf import csrf_exempt
 
 class Profiles(generics.ListCreateAPIView):
     queryset = Profile.objects.all()
@@ -33,16 +33,21 @@ class Profiles(generics.ListCreateAPIView):
         }
         return Response(response_data, status=status.HTTP_201_CREATED, headers=headers)
 
-    def login(self, request):
-        try:
-            user = self.queryset.get(username=request.data.username)
-        except ObjectDoesNotExist:
-            return Response({'success': 'false','message':'User does not exist.'}, status=status.HTTP_400_BAD_REQUEST)
-        if user.password == request.data.password:
-            #once logged in - jjj
-            return Response({'success':'true' ,'message':'User is valid.'})
 
 
-    def serve(self, user):
+    def get(user):
         serializer = ProfileSerializer(user)
         return Response(serializer.data)
+class Login(generics.ListCreateAPIView):
+    @csrf_exempt
+    def create(self, request):
+        try:
+            user = Profile.objects.get(username=self.request.data["username"])
+
+        except ObjectDoesNotExist:
+            return Response({'success': 'false','message':'User does not exist.'}, status=status.HTTP_400_BAD_REQUEST)
+        if user.password == self.request.data["password"]:
+            serializer = ProfileSerializer(user)
+            return Response(serializer.data)
+        else:
+            return Response({'success':'false', 'message':'Password is incorrect.'})
