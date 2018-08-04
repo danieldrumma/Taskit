@@ -12,6 +12,7 @@ class Profiles(generics.ListCreateAPIView):
 
     def create(self, request, *args, **kwargs):
         """
+        Create a new user with given data. Returns all relevant data.
 
         """
         # check date is valid
@@ -33,14 +34,19 @@ class Profiles(generics.ListCreateAPIView):
         }
         return Response(response_data, status=status.HTTP_201_CREATED, headers=headers)
 
-
-
-    def get(user):
-        serializer = ProfileSerializer(user)
+    def get(self, request):
+        """
+        Return profile information for given user
+        """
+        serializer = ProfileSerializer(self.request.data['username'])
         return Response(serializer.data)
+
 class Login(generics.ListCreateAPIView):
     @csrf_exempt
     def create(self, request):
+        """
+        Login view - verifies tha user is valid and returns information about user for profile page setup.
+        """
         try:
             user = Profile.objects.get(username=self.request.data["username"])
 
