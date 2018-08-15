@@ -1,5 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+}from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -7,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import './ButtonAppBar.css';
 
 const styles = {
   root: {
@@ -33,7 +39,8 @@ function ButtonAppBar(props) {
           <Typography variant="title" color="inherit" className={classes.flex}>
 
           </Typography>
-          <Button color="black">Login/Sign Up</Button>
+
+          <Link to='/login' id="login_button"><Button color="black" >Login/Sign Up</Button></Link>
         </Toolbar>
       </AppBar>
     </div>

@@ -1,0 +1,19 @@
+#login_button {
+  text-decoration: none;
+
+  color: black;
+}
+
+#login_button:visited {
+    color: black;
+}
+
+/* mouse over link */
+#login_button:hover {
+    color: #3c485b;
+}
+
+/* selected link */
+#login_button:active {
+    color: black;
+}
