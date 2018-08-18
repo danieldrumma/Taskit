@@ -1,52 +1,103 @@
 import React, { Component } from 'react';
-import {Button, FormGroup, FormControl, ControlLabel} from "react-bootstrap";
+import {FormGroup, FormControl, ControlLabel} from "react-bootstrap";
 import ReactDOM from 'react-dom';
-
+import './Login.css';
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import LoginField from "./LoginField";
 export default class Login extends Component {
-	constructor(props){
-		super(props);
-		this.state = {username: "",
-		password: ""
-		};
-	}
-	validateForm(){
-		return this.state.username.length >0 && this.state.password.length > 0;
-	}
-	handleChange = event =>{
-		this.setState({
-		[event.targt.id]: event.target.value
-		});
-	}
-	handleSubmit = event =>{
-	event.preventDefault();
-	}
-	
+
+
+	state = {
+	    open: false
+	  };
+
+	  handleClickOpen = () => {
+	    this.setState({ open: true });
+	  };
+
+	  handleClose = () => {
+	    this.setState({ open: false });
+	  };
+
+	styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+});
+
+
+
+
   render() {
     return (
+
 	<div className = "Login">
-	  <form onSubmit={this.handleSubmit}>
-	    <FormGroup controlID="username" bsSize="large">
-		  <ControlLabel>UserName</ControlLabel>
-		    <FormControl
-			  autoFocus
-			  type="username"
-			  value={this.state.username}
-			  onChange={this.handleChange}
-			 />
-		</FormGroup>
-		<Button
-			block
-			bsSize="large"
-			disabled={!this.validateForm()}
-			type="submit"
-			>
-			Login
-		 </Button>
-	  </form>
+	 		<h2>
+				Welcome to Taskit!
+			</h2>
+		 			<div className = "backgroundBox" >
+		 					<LoginField />
+							<Button variant="contained" color="primary">
+											Login
+										</Button>
+							<Button variant="contained" color="secondary" onClick={this.handleClickOpen} >
+								Sign up
+							</Button>
+      		</div>
+
+
+        <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}
+          aria-labelledby="form-dialog-title"
+        >
+          <DialogTitle id="form-dialog-title">Register</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              To register, please enter a username and password
+              here.
+            </DialogContentText>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Username"
+              type="email"
+              halfWidth
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Password"
+              type="email"
+              halfWidth
+            />
+          </DialogContent>
+          <DialogActions>
+
+            <Button  color="primary" onClick={this.handleClose}>
+              Cancel
+            </Button>
+
+            <Button onClick={this.handleClose} color="primary">
+              Register
+            </Button>
+          </DialogActions>
+        </Dialog>
+
+
+
 	</div>
     );
   }
 }
-	
-      
-    

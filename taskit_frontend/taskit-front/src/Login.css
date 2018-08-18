@@ -1,0 +1,22 @@
+.Login{
+  height: 150px;
+  padding: 20px;
+  padding-top: 50px;
+  text-align: center;
+  font-size: 32px;
+  color: white;
+  background-color: #C05353;
+
+}
+.backgroundBox {
+  background-color: white;
+  height:150px ;
+  width: 550px;
+  padding:35px;
+  margin-top: 95px;
+  margin-left:auto;
+  margin-right: auto;
+  text-align: center;
+  border: 3px solid black;
+
+}
