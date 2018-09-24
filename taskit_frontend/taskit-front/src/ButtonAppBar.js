@@ -34,7 +34,7 @@ function ButtonAppBar(props) {
       <AppBar position="static" color = "white">
         <Toolbar>
           <IconButton className={classes.menuButton} color="black" aria-label="Menu">
-            <MenuIcon />
+
           </IconButton>
           <Typography variant="title" color="inherit" className={classes.flex}>
 

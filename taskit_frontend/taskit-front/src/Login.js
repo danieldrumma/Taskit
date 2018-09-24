@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import {FormGroup, FormControl, ControlLabel} from "react-bootstrap";
-import ReactDOM from 'react-dom';
+import {BrowserRouter,  Route } from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import App from './App';
 import './Login.css';
+import HomePage from './HomePage';
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -10,8 +13,9 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import LoginField from "./LoginField";
-export default class Login extends Component {
 
+
+ class Login extends Component {
 
 	state = {
 	    open: false
@@ -46,9 +50,9 @@ export default class Login extends Component {
 			</h2>
 		 			<div className = "backgroundBox" >
 		 					<LoginField />
-							<Button variant="contained" color="primary">
-											Login
-										</Button>
+							<Button variant="contained" color="primary" component ={Link} to="/homepage">
+								Login
+							</Button>
 							<Button variant="contained" color="secondary" onClick={this.handleClickOpen} >
 								Sign up
 							</Button>
@@ -63,8 +67,8 @@ export default class Login extends Component {
           <DialogTitle id="form-dialog-title">Register</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              To register, please enter a username and password
-              here.
+              Please enter a Username and Password.
+
             </DialogContentText>
             <TextField
               autoFocus
@@ -94,10 +98,9 @@ export default class Login extends Component {
             </Button>
           </DialogActions>
         </Dialog>
-
-
-
 	</div>
     );
   }
 }
+
+export default Login;

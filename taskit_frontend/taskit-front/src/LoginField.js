@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import {
+  BrowserRouter as Router,
+  Link
+}from 'react-router-dom';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
+import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
@@ -14,6 +19,10 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+
+
 
 const styles = theme => ({
   margin: {
@@ -25,52 +34,61 @@ const styles = theme => ({
 });
 
 
+class LoginField extends React.Component{
 
+  state = {
+    showPassword: false,
+  };
 
-function InputWithIcon(props) {
-  const { classes } = props;
+handleClickShowPassword = () => {
+  this.setState(state => ({ showPassword: !state.showPassword }));
+};
+
+handleChange = prop => event => {
+   this.setState({ [prop]: event.target.value });
+ };
+
+ render() {
+    const { classes } = this.props;
 
   return (
     <div className = "LoginBox">
-      <FormControl className={classes.margin}>
-        <InputLabel htmlFor="input-with-icon-adornment"> Username </InputLabel>
-        <Input
-          id="input-with-icon-adornment"
-          startAdornment={
-            <InputAdornment position="start">
-              <AccountCircle />
-            </InputAdornment>
-          }
-        />
-      </FormControl>
 
-      <TextField
-      defaultValue = ""
-      className={classes.margin}
-        id="input-with-icon-textfield"
-        label="Password"
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <AccountCircle />
-            </InputAdornment>
-          ),
-        }}
-      />
+        <FormControl fullWidth={true}>
+          <Input id="Username" placeholder ="Username"/>
+        </FormControl>
+
+<FormControl fullWidth={true}>
+    <InputLabel htmlFor="adornment-password">Password</InputLabel>
+<Input
+  id="adornment-password"
+  fullWidth = {true}
+  type={this.state.showPassword ? 'text' : 'password'}
+  value={this.state.password}
+  onChange={this.handleChange('password')}
+  endAdornment={
+    <InputAdornment position="end">
+      <IconButton
+        aria-label="Toggle password visibility"
+        onClick={this.handleClickShowPassword}
+      >
+        {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+      </IconButton>
+    </InputAdornment>
+  }
+/>
+  </FormControl>
       <div className={classes.margin}>
-        <Grid container spacing={8} alignItems="flex-end">
+        <Grid container spacing={50} alignItems="flex-end">
         </Grid>
       </div>
 
-
-
-
     </div>
   );
+ }
 }
 
-InputWithIcon.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
-export default withStyles(styles)(InputWithIcon);
+
+
+export default withStyles(styles)(LoginField);

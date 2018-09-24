@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 //import { Router, Route} from 'react-router';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
-import logo from './logo.svg';
 import Login from  './Login';
+import HomePage from './HomePage';
 import ButtonAppBar from './ButtonAppBar';
 
 
@@ -40,24 +40,15 @@ class App extends Component{
 //  }
   render(){
     return(
-
-        <BrowserRouter>
         <div>
-            <Route exact path='/' component={Main} />
-            <Route path='/login' component={Login} />
-            </div>
-        </BrowserRouter>
-
-
+           <Switch>
+              <Route exact path='/' component={Main} />
+              <Route path='/login' component={Login} />
+              <Route path = '/homepage'component ={HomePage} />              
+            </Switch>
+          </div>
   );
   }
-//-------------- MUI Injection Below ---------------
 }
-
-
-
-
-
-//export default withStyles(styles)(ButtonAppBar);
 
 export default App;
